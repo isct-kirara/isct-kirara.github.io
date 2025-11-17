@@ -46,7 +46,13 @@ module:
     path: github.com/imfing/hextra
 
 params:
+  images:
+    - /static/images/og.jpeg
+
   navbar:
     displayLogo: false
+
+  social:
+    twitter: TokyoKiraTech
 
 title: 東京科学大学きらら同好会
