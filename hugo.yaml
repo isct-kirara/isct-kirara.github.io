@@ -2,6 +2,8 @@ baseURL: https://isct-kirara.github.io/
 
 defaultContentLanguage: ja
 
+hasCJKLanguage: true
+
 languageCode: ja-jp
 
 markup:
