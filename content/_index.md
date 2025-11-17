@@ -1,4 +1,5 @@
 ---
+title: 東京科学大学きらら同好会
 layout: hextra-home
 ---
 
