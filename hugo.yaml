@@ -4,6 +4,11 @@ defaultContentLanguage: ja
 
 languageCode: ja-jp
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 menu:
   main:
     - name: X
