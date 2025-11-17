@@ -35,4 +35,8 @@ module:
   imports:
     path: github.com/imfing/hextra
 
+params:
+  navbar:
+    displayLogo: false
+
 title: 東京科学大学きらら同好会
