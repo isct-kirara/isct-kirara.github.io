@@ -1,7 +1,8 @@
 ---
 title: Prismette! 創刊号
-images:
-  - /works/prismette-1/cover.png
+params:
+  images:
+    - /works/prismette-1/cover.png
 ---
 
 ![Prismette! 創刊号 表紙](./cover.png)
