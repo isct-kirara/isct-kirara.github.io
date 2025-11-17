@@ -4,6 +4,20 @@ defaultContentLanguage: ja
 
 languageCode: ja-jp
 
+menu:
+  main:
+    - name: X
+      params:
+        icon: x-twitter
+      url: https://x.com/TokyoKiraTech
+      weight: 1
+
+    - name: GitHub
+      params:
+        icon: github
+      url: https://github.com/isct-kirara
+      weight: 2
+
 module:
   imports:
     path: github.com/imfing/hextra
