@@ -11,29 +11,33 @@ markup:
 
 menu:
   main:
+    - name: ホーム
+      pageRef: /
+      weight: 1
+
     - name: 会誌
       pageRef: /works/
-      weight: 1
+      weight: 2
 
     - name: 入会フォーム
       pageRef: /join/
-      weight: 2
+      weight: 3
 
     - name: お問い合わせ
       pageRef: /contact/
-      weight: 3
+      weight: 4
 
     - name: X
       params:
         icon: x-twitter
       url: https://x.com/TokyoKiraTech
-      weight: 4
+      weight: 5
 
     - name: GitHub
       params:
         icon: github
       url: https://github.com/isct-kirara
-      weight: 5
+      weight: 6
 
 module:
   imports:
