@@ -47,7 +47,7 @@ module:
 
 params:
   images:
-    - /static/images/og.jpeg
+    - /images/og.jpeg
 
   navbar:
     displayLogo: false
