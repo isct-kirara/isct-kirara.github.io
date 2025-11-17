@@ -32,6 +32,7 @@ layout: hextra-home
   {{< hextra/feature-card
     title="会誌制作"
     subtitle="有志のメンバーで同人誌を制作し、コミックマーケットなどで頒布しています"
+    link="/works/"
     class="hx:aspect-auto hx:max-md:min-h-[340px] hx:md:aspect-[1.1/1]"
     image="/images/c106.jpeg"
     imageClass="hx:dark:opacity-80 hx:top-[40%] hx:w-full"
