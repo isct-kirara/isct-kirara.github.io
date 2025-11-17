@@ -1,8 +1,0 @@
-baseURL = 'https://isct-kirara.github.io/'
-defaultContentLanguage = 'ja'
-languageCode = 'ja-jp'
-title = '東京科学大学きらら同好会'
-
-[module]
-  [[module.imports]]
-    path = 'github.com/imfing/hextra'
