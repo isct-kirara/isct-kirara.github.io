@@ -36,4 +36,9 @@ layout: hextra-home
     image="/images/c106.jpeg"
     imageClass="hx:dark:opacity-80 hx:top-[40%] hx:w-full"
   >}}
+
+  {{< hextra/feature-card
+    title="...and more!"
+    subtitle="まだ発足したばかりの小さなサークルですが、これから活動の幅を広げていく予定です！"
+  >}}
 {{< /hextra/feature-grid >}}
