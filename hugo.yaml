@@ -59,6 +59,6 @@ params:
   social:
     twitter: TokyoKiraTech
 
-  favicon: "favicon.ico"
+  favicon: "/images/favicon.ico"
 
 title: 東京科学大学きらら同好会
