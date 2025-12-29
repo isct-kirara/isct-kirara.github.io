@@ -65,7 +65,7 @@ jobs:
           message: "Update preview for PR #${{ github.event.number }}"
 
       - name: Create PR comment
-        if: github.event.action != 'closed'
+        if: github.event.action == 'opened'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ./pr-source
