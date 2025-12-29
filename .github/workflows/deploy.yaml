@@ -50,21 +50,21 @@ jobs:
           path: gh-pages
 
       - name: Overwrite gh-pages with new build
-        working-directory: ./gh-pages
         run: |
           # previewディレクトリと.gitを一時退避
-          mv preview ../preview-backup || true # 存在しなくてもエラーにしない
-          mv .git ../git-backup
+          mv ./gh-pages/preview ./preview-backup || true # 存在しなくてもエラーにしない
+          mv ./gh-pages/.git ./git-backup
 
           # 古いファイルを削除
-          rm -r ./* ./.*
+          rm -r ./gh-pages
 
           # previewディレクトリと.gitを戻す
-          mv ../preview-backup ./preview || true
-          mv ../git-backup ./.git
+          mkdir ./gh-pages
+          mv ./preview-backup ./gh-pages/preview || true
+          mv ./git-backup ./gh-pages/.git
 
           # 新しいファイルをコピー
-          cp -a ../main/public/. .
+          cp -a ./main/public/. ./gh-pages/
 
       - uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # v9.1.4
         with:
