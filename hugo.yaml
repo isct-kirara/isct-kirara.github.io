@@ -49,7 +49,7 @@ params:
   description: きらら作品が好きな学生の集まる、東京科学大学の非公認サークルです
 
   images:
-    - /images/og.jpeg
+    - images/og.jpeg
 
   title: 東京科学大学きらら同好会
 
