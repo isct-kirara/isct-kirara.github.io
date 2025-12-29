@@ -1,0 +1,69 @@
+name: Preview
+
+on:
+  pull_request:
+    types:
+      - closed
+      - opened
+      - reopened
+      - synchronize
+
+concurrency:
+  group: "pages"
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v5
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Checkout PR Source
+        if: github.event.action != 'closed'
+        uses: actions/checkout@v5
+        with:
+          path: pr-source
+
+      - name: Setup Hugo
+        if: github.event.action != 'closed'
+        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3.0.0
+        with:
+          hugo-version: 0.152.2
+          extended: true
+
+      - name: Build PR Preview
+        if: github.event.action != 'closed'
+        working-directory: ./pr-source
+        run: |
+          PREVIEW_PATH="preview/pr-${{ github.event.number }}"
+          BASE_URL="https://isct-kirara.github.io/${PREVIEW_PATH}/"
+
+          # 以前のプレビューが存在する場合は削除
+          rm -r "../gh-pages/${PREVIEW_PATH}" || true
+
+          hugo build --minify --baseURL "${BASE_URL}" --destination "../gh-pages/${PREVIEW_PATH}"
+
+      - name: Create PR comment
+        if: github.event.action != 'closed'
+        run: |
+          PREVIEW_URL="https://isct-kirara.github.io/preview/pr-${{ github.event.number }}/"
+          COMMENT_BODY="🚀 プレビュー: <${PREVIEW_URL}>"
+
+          gh pr comment ${{ github.event.number }} --body "${COMMENT_BODY}"
+
+      - name: Handle Closed PR
+        if: github.event.action == 'closed'
+        run: |
+          rm -r gh-pages/preview/pr-${{ github.event.number }}
+
+      - uses: EndBug/add-and-commit@@a94899bca583c204427a224a7af87c02f9b325d5 # v9.1.4
+        with:
+          cwd: ./gh-pages
+          message: "Update preview for PR #${{ github.event.number }}"
