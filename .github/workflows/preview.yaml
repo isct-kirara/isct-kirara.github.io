@@ -10,6 +10,9 @@ on:
 
 concurrency:
   group: "pages"
+  # trueにすると、例えばmainのデプロイ中にPRが立ったときに
+  # mainのデプロイがキャンセルされてしまう
+  cancel-in-progress: false
 
 jobs:
   deploy-preview:
