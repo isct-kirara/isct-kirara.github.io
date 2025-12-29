@@ -52,6 +52,8 @@ jobs:
 
       - name: Create PR comment
         if: github.event.action != 'closed'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PREVIEW_URL="https://isct-kirara.github.io/preview/pr-${{ github.event.number }}/"
           COMMENT_BODY="🚀 プレビュー: <${PREVIEW_URL}>"
