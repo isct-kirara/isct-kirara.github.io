@@ -61,7 +61,7 @@ jobs:
           mv ../git-backup ./.git
 
           # 新しいファイルをコピー
-          cp -a ../public/. .
+          cp -a ../main/public/. .
 
       - uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # v9.1.4
         with:
