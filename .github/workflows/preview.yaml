@@ -57,7 +57,7 @@ jobs:
       - name: Handle Closed PR
         if: github.event.action == 'closed'
         run: |
-          rm -r gh-pages/preview/pr-${{ github.event.number }}
+          rm -r gh-pages/preview/pr-${{ github.event.number }} || true
 
       - uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # v9.1.4
         with:
