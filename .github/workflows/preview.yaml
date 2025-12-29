@@ -63,7 +63,7 @@ jobs:
         run: |
           rm -r gh-pages/preview/pr-${{ github.event.number }}
 
-      - uses: EndBug/add-and-commit@@a94899bca583c204427a224a7af87c02f9b325d5 # v9.1.4
+      - uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # v9.1.4
         with:
           cwd: ./gh-pages
           message: "Update preview for PR #${{ github.event.number }}"
