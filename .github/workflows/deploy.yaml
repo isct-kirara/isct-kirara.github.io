@@ -57,7 +57,7 @@ jobs:
           mv .git ../git-backup
 
           # 古いファイルを削除
-          rm -r ./*
+          rm -r ./* ./.*
 
           # previewディレクトリと.gitを戻す
           mv ../preview-backup ./preview || true
