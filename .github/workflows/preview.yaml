@@ -52,7 +52,7 @@ jobs:
           # 以前のプレビューが存在する場合は削除
           rm -r "../gh-pages/${PREVIEW_PATH}" || true
 
-          hugo build --minify --baseURL "${BASE_URL}" --destination "../gh-pages/${PREVIEW_PATH}"
+          hugo build --environment staging --minify --baseURL "${BASE_URL}" --destination "../gh-pages/${PREVIEW_PATH}"
 
       - name: Handle Closed PR
         if: github.event.action == 'closed'
