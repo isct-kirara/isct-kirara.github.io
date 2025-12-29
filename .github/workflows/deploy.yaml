@@ -6,6 +6,7 @@ on:
       - main
 
     paths:
+      - .github/workflows/deploy.yaml
       - content/**
       - static/**
       - hugo.yaml
@@ -15,15 +16,23 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}
-  cancel-in-progress: true
+  group: "pages"
+  # trueにすると、例えばmainのデプロイ中にPRが立ったときに
+  # mainのデプロイがキャンセルされてしまう
+  cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout main
+        uses: actions/checkout@v5
+        with:
+          path: main
 
       - uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3.0.0
         with:
@@ -31,25 +40,34 @@ jobs:
           extended: true
 
       - name: Build
+        working-directory: ./main
         run: hugo build --minify
 
-      - uses: actions/upload-pages-artifact@v4
+      - name: Checkout gh-pages
+        uses: actions/checkout@v5
         with:
-          path: public/
+          ref: gh-pages
+          path: gh-pages
 
-  deploy:
-    needs: build
+      - name: Overwrite gh-pages with new build
+        working-directory: ./gh-pages
+        run: |
+          # previewディレクトリと.gitを一時退避
+          mv preview ../preview-backup || true # 存在しなくてもエラーにしない
+          mv .git ../git-backup
 
-    permissions:
-      pages: write
-      id-token: write
+          # 古いファイルを削除
+          rm -r ./*
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+          # previewディレクトリと.gitを戻す
+          mv ../preview-backup ./preview || true
+          mv ../git-backup ./.git
 
-    runs-on: ubuntu-latest
+          # 新しいファイルをコピー
+          cp -a ../main/public/. .
 
-    steps:
-      - uses: actions/deploy-pages@v4
-        id: deployment
+      - uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # v9.1.4
+        with:
+          cwd: ./gh-pages
+          default_author: github_actions
+          message: Update site at ${{ github.sha }}
