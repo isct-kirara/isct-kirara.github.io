@@ -6,6 +6,7 @@ on:
       - main
 
     paths:
+      - .github/workflows/deploy.yaml
       - content/**
       - static/**
       - hugo.yaml
