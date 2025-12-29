@@ -54,6 +54,16 @@ jobs:
 
           hugo build --minify --baseURL "${BASE_URL}" --destination "../gh-pages/${PREVIEW_PATH}"
 
+      - name: Handle Closed PR
+        if: github.event.action == 'closed'
+        run: |
+          rm -r gh-pages/preview/pr-${{ github.event.number }}
+
+      - uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # v9.1.4
+        with:
+          cwd: ./gh-pages
+          message: "Update preview for PR #${{ github.event.number }}"
+
       - name: Create PR comment
         if: github.event.action != 'closed'
         env:
@@ -64,13 +74,3 @@ jobs:
           COMMENT_BODY="🚀 プレビュー: <${PREVIEW_URL}>"
 
           gh pr comment ${{ github.event.number }} --body "${COMMENT_BODY}"
-
-      - name: Handle Closed PR
-        if: github.event.action == 'closed'
-        run: |
-          rm -r gh-pages/preview/pr-${{ github.event.number }}
-
-      - uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # v9.1.4
-        with:
-          cwd: ./gh-pages
-          message: "Update preview for PR #${{ github.event.number }}"
