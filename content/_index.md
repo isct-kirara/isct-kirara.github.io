@@ -13,7 +13,7 @@ layout: hextra-home
 {{< /hextra/hero-subtitle >}}
 </div>
 
-{{< hextra/hero-button text="入会フォーム" link="/join/" >}}
+{{< hextra/hero-button text="入会フォーム" link="join/" >}}
 
 <div class="hx:flex hx:justify-center hx:mb-6 hx:mt-12 hx:w-full">
 {{< hextra/hero-section >}}
@@ -26,16 +26,16 @@ layout: hextra-home
     title="会員同士の交流"
     subtitle="Discordでの交流が中心ですが、定期的に対面で集まる機会も設けています"
     class="hx:aspect-auto hx:max-md:min-h-[340px] hx:md:aspect-[1.1/1]"
-    image="/images/meeting.jpeg"
+    image="images/meeting.jpeg"
     imageClass="hx:dark:opacity-80 hx:top-[40%] hx:w-full"
   >}}
 
   {{< hextra/feature-card
     title="会誌制作"
     subtitle="有志のメンバーで同人誌を制作し、コミックマーケットなどで頒布しています"
-    link="/works/"
+    link="works/"
     class="hx:aspect-auto hx:max-md:min-h-[340px] hx:md:aspect-[1.1/1]"
-    image="/images/c106.png"
+    image="images/c106.png"
     imageClass="hx:dark:opacity-80 hx:top-[40%] hx:w-full"
   >}}
 
